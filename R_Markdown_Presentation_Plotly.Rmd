@@ -1,0 +1,28 @@
+---
+title: "Developing Data Products -- R Markdown Presentation & Plotly: Analysis of Car Data"
+author: "Shayan (Sean) Taheri"
+date: "June 10, 2019"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Task 1: Understanding Gas Mileage
+
+The dataset to be used in our Car Data Analysis is `mtcars` dataset. Through a plot analysis, we try to understand the relationship of various factors to gas mileage (`mpg`). In this regard, the weight (`wt`) versus mileage (`mpg`) is plotted along with the X/Y axes is skethed. In this visualization of data, we have the number of cylinder (`cyl`) as color along with the amount of horsepower (`hp`) as the size of an individual point.
+
+## Task 2: Visualizing the Data
+
+```{r plot, echo=FALSE, message=F, warning=F}
+suppressPackageStartupMessages(library(plotly))
+plot_ly(data = mtcars, x = ~wt, y = ~mpg, 
+        color = ~as.factor(cyl), size = ~hp,
+        text = ~paste("Weight: ", wt, '<br>MPG:', mpg),
+        type = "scatter", mode = "markers") %>%
+  layout(title = "Car Data")
+```
+
